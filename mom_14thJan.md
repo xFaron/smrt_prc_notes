@@ -1,0 +1,67 @@
+# Minutes of the Meeting (MoM)
+
+**Figuring out Structural Analysis System:**  
+**Date:** 2026 - 1 - 14  
+**Time:** 22:00 - 00:10 
+
+---
+
+## Agenda
+1. To figure out how to build the structural analysis system. To be precise
+  1. Figure out how to acquire data
+  2. Figure out if annotations are required, and, if yes, how are we gonna do that
+  3. Figure out the system flow
+  4. Concretize the details into real world tech stack
+  5. Schedule tasks
+
+---
+
+## Discussion Summary
+
+### 1. Structural analysis system
+
+![Diagram of Structural Analysis system](misc/image.png)
+
+We are taking into consideration two kinds of drawings.
+1. Structural Drawings : Drawings that detail the crossection and other little construction related details of a single structural component.
+2. Layout Drawings : These drawing show the rough location of each of these components on the actual building.
+
+Before we start as to the mechanism of this system, we will detail the component information as follows
+
+```cpp
+class Component {
+  ID id; // An ID type with all the id's of this component used in the plan
+  double length, breadth, height;
+  Cement cement; // Cement type indicating the grade used like M25, M50 etc.
+  vector<pair<double, double>> steel_per_meter; // A Map of Radii to Length in on meter length of the component
+  Steel steel; // Steel type indicating the steel grade/grades used
+};
+```
+
+The above is a general schema for a structural component. This doesn't include components like Windows, Doors etc.
+
+Now, to get the above info from the drawings, we will mainly rely on OCR, and an image understanding system to extract these details from the Structural drawing. Why are we going for something like this? Due to the scalability. OCR itself is very scalable. Some image understanding system would just require a lot of data, and that is fine.
+
+This image + OCR understanding system is being called MSS (Main Samajne vala System).
+
+The overall length of each component can be estimated from the CV based system on Layout drawings.
+
+---
+
+## Follow-ups / Parking Lot
+Topics to revisit
+
+- Detailed review of MSS (VImp)
+- Finalising the Schema for most of the objects, to get ready for Residential plans. (Imp)
+
+---
+
+## Next Meeting
+**Date:** 2026 - 1 - 14
+**Time:** Night
+**Objective:** Figure out MSS, Proceed with details of implementation
+
+---
+
+## Notes
+- Anything informal, context-heavy, or worth remembering later
